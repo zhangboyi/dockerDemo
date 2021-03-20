@@ -64,7 +64,7 @@ jobs:
               docker image rm zhangboyi520/dockerdemo
             fi
             docker pull zhangboyi520/dockerdemo:latest
-            docker run -d --name test_docker_demo -p 8000:8080 zhangboyi520/dockerdemo
+            docker run -d --name test_docker_demo -p 8000:8000 zhangboyi520/dockerdemo
             
 
         
