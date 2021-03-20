@@ -43,7 +43,7 @@ jobs:
           port: 22
           script: |
             docker pull zhangboyi520/dockerdemo:latest
-            docker run --name test_docker_demo -p 8087:8087 zhangboyi520/dockerdemo
+            docker run --name test_docker_demo -p 8080:8080 zhangboyi520/dockerdemo
             
 
         
