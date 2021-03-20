@@ -15,7 +15,7 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        default: 'master'
+        default: 'uat'
         required: true
 
 
@@ -36,7 +36,6 @@ jobs:
         with:
           repository: ${{ github.repository }}
           ref: "${{ github.event.inputs.branch }}"
-        
       - name: Build and Push to Docker Hub
         uses: docker/build-push-action@v1
         with:
