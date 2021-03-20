@@ -25,6 +25,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Check out the repo
         uses: actions/checkout@v2
+        
       - name: Push to Docker Hub
         uses: docker/build-push-action@v1
         with:
@@ -32,3 +33,24 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: zhangboyi520/dockerdemo
           tag_with_ref: true
+          
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNSME }}
+          password: ${{ secrets.SSH_PASSWARD }}
+          port: 22
+          script: |
+            docker pull zhangboyi520/dockerdemo:latest
+            docker run --name test_docker_demo -p 8087:8087 zhangboyi520/dockerdemo
+            
+
+        
+        
+        
+        
+        
+        
+        
+        
