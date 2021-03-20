@@ -53,18 +53,18 @@ jobs:
           password: ${{ secrets.SSH_PASSWARD }}
           port: 22
           script: |
-          count=`docker ps | grep test_docker_demo | wc -l`
-          crm=`docker ps -a | grep test_docker_demo | wc -l`
-          cimage=`docker image ls | grep zhangboyi520/dockerdemo | wc -l`
-          if [$count -gt 0]; then
-            docker kill test_docker_demo
-          elif [$crm -gt 0]; then
-            docker rm test_docker_demo
-          elif [$cimage -gt 0]; then
-            docker image rm zhangboyi520/dockerdemo
-          fi
-          docker pull zhangboyi520/dockerdemo:latest
-          docker run -d --name test_docker_demo -p 8000:8080 zhangboyi520/dockerdemo
+            count=`docker ps | grep test_docker_demo | wc -l`
+            crm=`docker ps -a | grep test_docker_demo | wc -l`
+            cimage=`docker image ls | grep zhangboyi520/dockerdemo | wc -l`
+            if [$count -gt 0]; then
+              docker kill test_docker_demo
+            elif [$crm -gt 0]; then
+              docker rm test_docker_demo
+            elif [$cimage -gt 0]; then
+              docker image rm zhangboyi520/dockerdemo
+            fi
+            docker pull zhangboyi520/dockerdemo:latest
+            docker run -d --name test_docker_demo -p 8000:8080 zhangboyi520/dockerdemo
             
 
         
