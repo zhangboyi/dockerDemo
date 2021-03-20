@@ -29,7 +29,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: output
-        run: echo ${{ github.repository }}
+        run: echo "${{ github.event.inputs.branch }}"
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Check out the repo
         uses: actions/checkout@v2.3.4
@@ -52,11 +53,18 @@ jobs:
           password: ${{ secrets.SSH_PASSWARD }}
           port: 22
           script: |
+          count=`docker ps | grep test_docker_demo | wc -l`
+          crm=`docker ps -a | grep test_docker_demo | wc -l`
+          cimage=`docker image ls | grep zhangboyi520/dockerdemo | wc -l`
+          if [$count -gt 0]; then
             docker kill test_docker_demo
+          elif [$crm -gt 0]; then
             docker rm test_docker_demo
+          elif [$cimage -gt 0]; then
             docker image rm zhangboyi520/dockerdemo
-            docker pull zhangboyi520/dockerdemo:latest
-            docker run -d --name test_docker_demo -p 8000:8080 zhangboyi520/dockerdemo
+          fi
+          docker pull zhangboyi520/dockerdemo:latest
+          docker run -d --name test_docker_demo -p 8000:8080 zhangboyi520/dockerdemo
             
 
         
