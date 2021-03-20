@@ -43,8 +43,11 @@ jobs:
           password: ${{ secrets.SSH_PASSWARD }}
           port: 22
           script: |
+            docker kill test_docker_demo
+            docker rm test_docker_demo
+            docker image rm zhangboyi520/dockerdemo
             docker pull zhangboyi520/dockerdemo:latest
-            docker run -d --name test_docker_demo -p 8080:8080 zhangboyi520/dockerdemo
+            docker run -d --name test_docker_demo -p 8000:8080 zhangboyi520/dockerdemo
             
 
         
