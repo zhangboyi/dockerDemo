@@ -20,6 +20,13 @@ def get_items(item_id: int, name: str):
         "item_id": item_id,
         "name": name
     }
+@app.get("/tr")
+def get_tr(item_id: int, name: str):
+    return {
+        "code": 200,
+        "item_id": item_id,
+        "name": name
+    }
 
 if __name__ == '__main__':
     import uvicorn
