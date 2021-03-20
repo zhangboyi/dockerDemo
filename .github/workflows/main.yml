@@ -9,6 +9,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -43,7 +44,7 @@ jobs:
           port: 22
           script: |
             docker pull zhangboyi520/dockerdemo:latest
-            docker run -p --name test_docker_demo -p 8080:8080 zhangboyi520/dockerdemo
+            docker run --name test_docker_demo -p 8080:8080 zhangboyi520/dockerdemo
             
 
         
